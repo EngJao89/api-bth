@@ -1,4 +1,13 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { OngService } from './ong.service';
+import { CreateOngDTO } from './dto/create-ong.dto';
 
-@Controller()
-export class OngController {}
+@Controller('ongs')
+export class OngController {
+  constructor(private readonly ongService: OngService) {}
+
+  @Post()
+  async create(@Body() data: CreateOngDTO) {
+    return this.ongService.create(data);
+  }
+}
