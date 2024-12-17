@@ -20,3 +20,16 @@ model User {
 
   @@map("users")
 }
+
+model Ong {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  phone         String   @unique
+  password      String
+  city          String   @unique
+  uf            String
+  created_at    DateTime @default(now())
+
+  @@map("ongs")
+}
