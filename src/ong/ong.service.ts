@@ -17,4 +17,8 @@ export class OngService {
       data,
     });
   }
+
+  async list() {
+    return this.prisma.ong.findMany();
+  }
 }
