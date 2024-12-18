@@ -21,4 +21,8 @@ export class OngService {
   async list() {
     return this.prisma.ong.findMany();
   }
+
+  async show(id: string) {
+    return this.prisma.ong.findUnique({ where: { id } });
+  }
 }
