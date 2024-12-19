@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Patch, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { OngService } from './ong.service';
 import { CreateOngDTO } from './dto/create-ong.dto';
 import { ParamId } from 'src/decorators/param-id.decorator';
@@ -32,5 +40,10 @@ export class OngController {
   @Patch(':id')
   async updatePartial(@Body() data: UpdatePatchOngDTO, @ParamId() id: string) {
     return this.ongService.updatePartial(id, data);
+  }
+
+  @Delete(':id')
+  async delete(@ParamId() id: string) {
+    return this.ongService.delete(id);
   }
 }

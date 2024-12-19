@@ -60,6 +60,20 @@ export class OngService {
     });
   }
 
+  async delete(id: string) {
+    const ong = await this.show(id);
+
+    if (!ong) {
+      throw new NotFoundException(`User ${id} not found`);
+    }
+
+    return this.prisma.ong.delete({
+      where: {
+        id,
+      },
+    });
+  }
+
   async exists(id: string) {
     if (
       !(await this.prisma.ong.count({
