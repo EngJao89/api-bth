@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Put } from '@nestjs/common';
 import { OngService } from './ong.service';
 import { CreateOngDTO } from './dto/create-ong.dto';
 import { ParamId } from 'src/decorators/param-id.decorator';
 import { UpdatePutOngDTO } from './dto/update-put-ong.dto';
+import { UpdatePatchOngDTO } from './dto/update-patch-ong.dto';
 
 @Controller('ongs')
 export class OngController {
@@ -26,5 +27,10 @@ export class OngController {
   @Put(':id')
   async update(@Body() data: UpdatePutOngDTO, @ParamId() id: string) {
     return this.ongService.update(id, data);
+  }
+
+  @Patch(':id')
+  async updatePartial(@Body() data: UpdatePatchOngDTO, @ParamId() id: string) {
+    return this.ongService.updatePartial(id, data);
   }
 }
